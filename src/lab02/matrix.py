@@ -1,21 +1,23 @@
-def check_matrix(m):
-    c = len(m[0])
-    for i in range(len(m)):
-        if len(m[i]) != c:
-            raise ValueError
+def check_matrix(mat):
+    """Проверяет, что матрица прямоугольная (все строки одной длины). Иначе -> ValueError."""
+    c = len(mat[0])
+    for i in range(len(mat)):
+        if len(mat[i]) != c:
+            raise ValueError("матрица «рваная»")
 
 # === 1 ===
-def transpose(m):
-    if len(m) == 0:
+def transpose(mat: list[list[float | int]]) -> list[list]:
+    """Транспонирует матрицу (меняет строки и столбцы местами). Пустая матрица -> []."""
+    if len(mat) == 0:
         return []
-    check_matrix(m)
+    check_matrix(mat)
     t = []
-    num_rows = len(m)
-    num_cols = len(m[0])
+    num_rows = len(mat)
+    num_cols = len(mat[0])
     for j in range(num_cols):
         new_row = []
         for i in range(num_rows):
-            new_row.append(m[i][j])
+            new_row.append(mat[i][j])
         t.append(new_row)
     return t
 
@@ -23,64 +25,66 @@ def transpose(m):
 try:
     print("transpose([[1, 2, 3]]) ->", transpose([[1, 2, 3]]))
 except ValueError:
-    print("transpose([[1, 2, 3]]) -> ValueError")
+    print("transpose([[1, 2, 3]]) -> ValueError (матрица «рваная»)")
 
 try:
     print("transpose([[1], [2], [3]]) ->", transpose([[1], [2], [3]]))
 except ValueError:
-    print("transpose([[1], [2], [3]]) -> ValueError")
+    print("transpose([[1], [2], [3]]) -> ValueError (матрица «рваная»)")
 
 try:
     print("transpose([[1, 2], [3, 4]]) ->", transpose([[1, 2], [3, 4]]))
 except ValueError:
-    print("transpose([[1, 2], [3, 4]]) -> ValueError")
+    print("transpose([[1, 2], [3, 4]]) -> ValueError (матрица «рваная»)")
 
 try:
     print("transpose([]) ->", transpose([]))
 except ValueError:
-    print("transpose([]) -> ValueError")
+    print("transpose([]) -> ValueError (матрица «рваная»)")
 
 try:
     print("transpose([[1, 2], [3]]) ->", transpose([[1, 2], [3]]))
 except ValueError:
-    print("transpose([[1, 2], [3]]) -> ValueError")
+    print("transpose([[1, 2], [3]]) -> ValueError (матрица «рваная»)")
 
 
 # === 2 ===
-def row_sums(m):
-    check_matrix(m)
+def row_sums(mat: list[list[float | int]]) -> list[float]:
+    """Возвращает список сумм по каждой строке матрицы m."""
+    check_matrix(mat)
     result = []
-    for i in range(len(m)):
-        result.append(sum(m[i]))
+    for i in range(len(mat)):
+        result.append(sum(mat[i]))
     return result
 
 # Тест-кейсы
 try:
     print("row_sums([[1, 2, 3], [4, 5, 6]]) ->", row_sums([[1, 2, 3], [4, 5, 6]]))
 except ValueError:
-    print("row_sums([[1, 2, 3], [4, 5, 6]]) -> ValueError")
+    print("row_sums([[1, 2, 3], [4, 5, 6]]) -> ValueError (матрица «рваная»)")
 try:
     print("row_sums([[-1, 1], [10, -10]]) ->", row_sums([[-1, 1], [10, -10]]))
 except ValueError:
-    print("row_sums([[-1, 1], [10, -10]]) -> ValueError")
+    print("row_sums([[-1, 1], [10, -10]]) -> ValueError (матрица «рваная»)")
 try:
     print("row_sums([[0, 0], [0, 0]]) ->", row_sums([[0, 0], [0, 0]]))
 except ValueError:
-    print("row_sums([[0, 0], [0, 0]]) -> ValueError")
+    print("row_sums([[0, 0], [0, 0]]) -> ValueError (матрица «рваная»)")
 try:
     print("row_sums([[1, 2], [3]]) ->", row_sums([[1, 2], [3]]))
 except ValueError:
-    print("row_sums([[1, 2], [3]]) -> ValueError")
+    print("row_sums([[1, 2], [3]]) -> ValueError (матрица «рваная»)")
 
 
 # === 3 ===
-def col_sums(m):
-    check_matrix(m)
+def col_sums(mat: list[list[float | int]]) -> list[float]:
+    """Возвращает список сумм по каждому столбцу матрицы m."""
+    check_matrix(mat)
     result = []
-    for j in range(len(m[0])):
+    for j in range(len(mat[0])):
         sum_col = 0
-        for i in range(len(m)):
-            sum_col += m[i][j]
+        for i in range(len(mat)):
+            sum_col += mat[i][j]
         result.append(sum_col)
     return result
 
@@ -88,19 +92,19 @@ def col_sums(m):
 try:
     print("col_sums([[1, 2, 3], [4, 5, 6]]) ->", col_sums([[1, 2, 3], [4, 5, 6]]))
 except ValueError:
-    print("col_sums([[1, 2, 3], [4, 5, 6]]) -> ValueError")
+    print("col_sums([[1, 2, 3], [4, 5, 6]]) -> ValueError (матрица «рваная»)")
 
 try:
     print("col_sums([[-1, 1], [10, -10]]) ->", col_sums([[-1, 1], [10, -10]]))
 except ValueError:
-    print("col_sums([[-1, 1], [10, -10]]) -> ValueError")
+    print("col_sums([[-1, 1], [10, -10]]) -> ValueError (матрица «рваная»)")
 
 try:
     print("col_sums([[0, 0], [0, 0]]) ->", col_sums([[0, 0], [0, 0]]))
 except ValueError:
-    print("col_sums([[0, 0], [0, 0]]) -> ValueError")
+    print("col_sums([[0, 0], [0, 0]]) -> ValueError (матрица «рваная»)")
 
 try:
     print("col_sums([[1, 2], [3]]) ->", col_sums([[1, 2], [3]]))
 except ValueError:
-    print("col_sums([[1, 2], [3]]) -> ValueError")
+    print("col_sums([[1, 2], [3]]) -> ValueError (матрица «рваная»)")

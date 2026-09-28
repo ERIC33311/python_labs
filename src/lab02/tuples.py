@@ -1,5 +1,5 @@
-def format_record(inicial):
-    inicials = list(inicial)
+def format_record(rec: tuple[str, str, float]) -> str:
+    inicials = list(rec)
     gpa = inicials[2]
     fio1 = inicials[0].split()
     class_stud = inicials[1].strip()
