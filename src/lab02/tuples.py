@@ -5,6 +5,18 @@ def format_record(rec: tuple[str, str, float]) -> str:
 
     ФИО и группа не могут быть пустыми, GPA должен быть в диапазоне [0.0, 5.0] -> ValueError.
     """
+    if not isinstance(rec, tuple):
+        raise TypeError("rec должен быть кортежем")
+    
+    if len(rec) != 3:
+        raise ValueError("rec должен содержать ровно 3 элемента")
+
+    if not isinstance(rec[0], str) or not isinstance(rec[1], str):
+        raise TypeError("ФИО и группа должны быть строками")
+    
+    if not isinstance(rec[2], (float)):
+        raise TypeError("GPA должен быть числом")
+    
     inicials = list(rec)
     gpa = inicials[2]
     fio1 = inicials[0].split()
@@ -58,3 +70,13 @@ try:
     print(format_record(("Иванов Иван", "BIVT-25", 6.0)))
 except ValueError: 
     print("format_record с GPA вне диапазона -> ValueError")
+
+try:
+    print(format_record(("Иванов Иван", "BIVT-25", 6.0, 'Лишний')))
+except ValueError: 
+    print("format_record с 4 элементами -> ValueError")
+
+try:
+    print(format_record(["Иванов Иван", "BIVT-25", 6.0]))
+except TypeError: 
+    print("format_record, вместо кортежа — список -> TypeError")
