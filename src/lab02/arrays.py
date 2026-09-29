@@ -70,7 +70,7 @@ def check_matrix(mat):
 def flatten(mat: list[list | tuple]) -> list:
     """Расплющивает список списков/кортежей в один плоский список (по строкам)."""
     if not isinstance(mat, list):
-        raise TypeError("строка/элемент не является списком/кортежем")
+        raise TypeError("матрица не является списком")
     
     check_matrix(mat)
     result = []
