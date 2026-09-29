@@ -1,4 +1,10 @@
 def format_record(rec: tuple[str, str, float]) -> str:
+    """
+    Форматирует запись студента (ФИО, группа, GPA) в строку вида
+    "Иванов И.И., гр. BIVT-25, GPA 4.60".
+
+    ФИО и группа не могут быть пустыми, GPA должен быть в диапазоне [0.0, 5.0] -> ValueError.
+    """
     inicials = list(rec)
     gpa = inicials[2]
     fio1 = inicials[0].split()
