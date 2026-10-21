@@ -42,7 +42,7 @@ def main():
         max_word_len = max([len(word) for word, _ in top_5_words], default=5)
         
         print(f"{'слово':<{max_word_len}} | частота")
-        print("-" * (max_word_len + 10))  # Рисуем идеальную разделительную линию
+        print("-" * (max_word_len + 10))
         
         for word, count in top_5_words:
             print(f"{word:<{max_word_len}} | {count}")
