@@ -60,7 +60,7 @@ def csv_to_json(csv_path: str, json_path: str) -> None:
     with open(c_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         rows = list(reader) 
-    if not rows or reader.fieldnames is None or not rows[0]:
+    if not rows or not rows[0]:
         raise ValueError("CSV без заголовка или пустой")
 
     j_path.parent.mkdir(parents=True, exist_ok=True)
@@ -79,5 +79,5 @@ if __name__ == "__main__":
         csv_to_json("data/samples/people.csv", "data/out/people_from_csv.json")
         print("Успешно: CSV -> JSON выполнен")
     except Exception as error:
-        print(f"Ошибка выполнения демо-сценария: {error}", file=sys.stderr)
+        print(f"Ошибка выполнения сценария: {error}", file=sys.stderr)
         sys.exit(1)
