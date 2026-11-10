@@ -67,3 +67,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+a = 'fjf'
+print(f'{a:6}hi')
